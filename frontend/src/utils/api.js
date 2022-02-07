@@ -101,7 +101,7 @@ class Api {
 }
 
 const api = new Api({
-  serverUrl: 'https://mesto.nomoreparties.co/v1/cohort-29',
+  serverUrl: 'http://localhost:3001',
   receiveRequestHeaders: {
     authorization: '47bf35c3-c8a1-495a-9dd2-8537c372d068'
   },
