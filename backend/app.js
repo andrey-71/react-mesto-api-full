@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const routes = require('./routes');
@@ -17,6 +18,15 @@ const app = express();
 mongoose.connect(`${DB_ADDRESS}`, {
   useNewUrlParser: true,
 });
+
+// CORS
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',
+  ],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Сборка данных в JSON-формат
 app.use(bodyParser.json());
