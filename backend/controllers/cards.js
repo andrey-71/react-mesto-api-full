@@ -34,9 +34,8 @@ module.exports.deleteCard = (req, res, next) => Card.findById(req.params.id)
     if (card.owner.toString() === req.user._id) {
       return Card.findByIdAndRemove(req.params.id)
         .then(() => res.status(200).send(card));
-    } else {
-      next(new ForBiddenError('Вы можете удалить только свою карточку'));
     }
+    return next(new ForBiddenError('Вы можете удалить только свою карточку'));
   })
   .catch((err) => {
     if (err.name === 'CastError') {
