@@ -1,0 +1,6 @@
+@media screen and (max-width: 767px) {
+  .header__content_type_logout {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}

@@ -1,0 +1,23 @@
+.popup__submit-button {
+  width: 100%;
+  margin-top: 8px; /* исправить */
+  padding: 14px 0 14px;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 18px;
+  line-height: 1.22;
+  border: 0;
+  border-radius: 2px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+
+.popup__submit-button:hover {
+  opacity: 0.8;
+}

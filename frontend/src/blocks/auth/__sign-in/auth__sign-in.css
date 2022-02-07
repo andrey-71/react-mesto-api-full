@@ -1,0 +1,9 @@
+.auth__sign-in {
+  width: 100%;
+  min-height: 17px;
+  height: auto;
+  margin-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

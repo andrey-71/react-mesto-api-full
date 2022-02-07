@@ -1,0 +1,5 @@
+@media screen and (max-width: 767px) {
+  .header__content_type_login {
+    flex-direction: column-reverse;
+  }
+}

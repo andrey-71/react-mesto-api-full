@@ -1,0 +1,8 @@
+.auth__submit-button_disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.auth__submit-button_disabled:hover {
+  opacity: 0.2;
+}

@@ -1,0 +1,14 @@
+.auth__registration-request-text {
+  margin: 0;
+  padding-right: 5px;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #fff;
+}

@@ -1,0 +1,24 @@
+.content {
+  max-width: 1200px;
+  min-width: 320px;
+  box-sizing: border-box;
+  padding: 0 160px;
+}
+
+@media screen and (max-width: 1023px) {
+  .content {
+    padding: 0 90px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .content {
+    padding: 0 19px;
+  }
+}

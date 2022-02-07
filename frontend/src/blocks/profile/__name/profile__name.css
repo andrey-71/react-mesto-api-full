@@ -1,0 +1,28 @@
+.profile__name {
+  width: 100%;
+  grid-area: name;
+  align-self: end;
+  margin: 0;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 1.22;
+  }
+}

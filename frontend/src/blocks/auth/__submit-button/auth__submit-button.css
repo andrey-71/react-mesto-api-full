@@ -1,0 +1,30 @@
+.auth__submit-button {
+  width: 100%;
+  margin: 216px 0 15px;
+  padding: 14px 0;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-size: 18px;
+  line-height: 1.22;
+  border: 0;
+  border-radius: 2px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: opacity .4s;
+}
+
+.auth__submit-button:hover {
+  opacity: .85;
+}
+
+@media screen and (max-width: 424px) {
+  .auth__submit-button {
+    margin: 173px 0 20px;
+    font-size: 16px;
+  }
+}

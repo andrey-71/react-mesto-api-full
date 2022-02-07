@@ -1,0 +1,33 @@
+.profile__job {
+  grid-area: job;
+  width: 100%;
+  align-self: start;
+  margin: 0;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #fff;
+  text-rendering: optimizeLegibility;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__job {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__job {
+    align-self: center;
+  }
+}

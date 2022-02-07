@@ -1,0 +1,27 @@
+.popup__title {
+  margin: 0;
+  padding-bottom: 24px; /* исправить */
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.21;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__title {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 1.21;
+    padding-bottom: 75px;
+  }
+}
