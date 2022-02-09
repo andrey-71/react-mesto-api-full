@@ -6,15 +6,14 @@ function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   // Отрисовка кнопки удаления карточки, если карточка создана пользователем
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
   const cardDeleteButtonClassName = (
     `card__delete-button ${isOwn ? 'card__delete-button_visible' : 'card__delete-button_hidden'}`
   );
   // Отрисовка лайка на карточке, поставленного пользователем
-  const isLiked = props.card.likes.some(like => like._id === currentUser._id);
+  const isLiked = props.card.likes.some(like => like === currentUser._id);
   const cardLikeButtonClassName = `card__like${isLiked ? ' card__like_active' : ''}`;
-
-
+  console.log(props.card);
   return (
     <figure className='card'>
       <img

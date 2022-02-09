@@ -181,7 +181,8 @@ function App() {
 
   // - лайка на карточке
   function handleCardLike(card) {
-    const isLiked = card.likes.some(c => c._id === currentUser._id);
+    console.log(card.likes);
+    const isLiked = card.likes.some(like => like === currentUser._id);
 
     api.setLikeCard(card, !isLiked)
       .then((newCard) => {
