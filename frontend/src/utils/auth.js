@@ -1,11 +1,11 @@
 class Auth {
-  constructor(serverAuthUrl) {
-    this._serverAuthUrl = serverAuthUrl;
+  constructor(serverUrl) {
+    this._serverUrl = serverUrl;
   }
 
   // Регистрация пользователя
   register(data) {
-    return fetch(`${this._serverAuthUrl}/signup`, {
+    return fetch(`${this._serverUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ class Auth {
 
   // Авторизация пользователя
   authorize(data) {
-    return fetch(`${this._serverAuthUrl}/signin`, {
+    return fetch(`${this._serverUrl}/signin`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ class Auth {
 
   // Проверка корректности токена, получение email пользователя
   checkLocalStorage(email) {
-    return fetch(`${this._serverAuthUrl}/users/me`, {
+    return fetch(`${this._serverUrl}/users/me`, {
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json',

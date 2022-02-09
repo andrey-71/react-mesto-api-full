@@ -1,8 +1,7 @@
 class Api {
   constructor(options) {
     this._serverUrl = options.serverUrl;
-    this._receiveRequestHeaders = options.receiveRequestHeaders
-    this._sendRequestHeaders = options.sendRequestHeaders;
+    this._headers = options.headers
   }
 
   // Общий запрос всех данных с сервера
@@ -14,7 +13,7 @@ class Api {
   _getUserInfo() {
     return fetch(`${this._serverUrl}/users/me`, {
       credentials: 'include',
-      headers: this._receiveRequestHeaders
+      headers: this._headers
     })
       .then(res => this._handleResult(res));
   }
@@ -23,7 +22,7 @@ class Api {
   _getInitialCards() {
     return fetch(`${this._serverUrl}/cards`, {
       credentials: 'include',
-      headers: this._receiveRequestHeaders
+      headers: this._headers
     })
       .then(res => this._handleResult(res));
   }
@@ -32,7 +31,8 @@ class Api {
   setUserInfo(data) {
     return fetch(`${this._serverUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._sendRequestHeaders,
+      credentials: 'include',
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         about: data.about
@@ -45,7 +45,8 @@ class Api {
   setUserAvatar(data) {
     return fetch(`${this._serverUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._sendRequestHeaders,
+      credentials: 'include',
+      headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatar
       })
@@ -57,7 +58,8 @@ class Api {
   setNewCard(data) {
     return fetch(`${this._serverUrl}/cards`, {
       method: 'POST',
-      headers: this._sendRequestHeaders,
+      credentials: 'include',
+      headers: this._headers,
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -70,7 +72,8 @@ class Api {
   deleteCard(data) {
     return fetch(`${this._serverUrl}/cards/${data._id}`, {
       method: 'DELETE',
-      headers: this._receiveRequestHeaders
+      credentials: 'include',
+      headers: this._headers
     })
       .then(res => this._handleResult(res));
   }
@@ -78,15 +81,17 @@ class Api {
   // Установка/снятие лайка
   setLikeCard(card, isLiked) {
     if (isLiked) {
-      return fetch(`${this._serverUrl}/cards/likes/${card._id}`, {
+      return fetch(`${this._serverUrl}/cards/${card._id}/likes`, {
         method: 'PUT',
-        headers: this._sendRequestHeaders
+        credentials: 'include',
+        headers: this._headers
       })
         .then(res => this._handleResult(res));
     } else {
-      return fetch(`${this._serverUrl}/cards/likes/${card._id}`, {
+      return fetch(`${this._serverUrl}/cards/${card._id}/likes`, {
         method: 'DELETE',
-        headers: this._receiveRequestHeaders
+        credentials: 'include',
+        headers: this._headers
       })
         .then(res => this._handleResult(res));
     }
@@ -104,11 +109,7 @@ class Api {
 
 const api = new Api({
   serverUrl: 'http://localhost:3001',
-  receiveRequestHeaders: {
-    authorization: '47bf35c3-c8a1-495a-9dd2-8537c372d068'
-  },
-  sendRequestHeaders: {
-    authorization: '47bf35c3-c8a1-495a-9dd2-8537c372d068',
+  headers: {
     'Content-Type': 'application/json'
   }
 });
