@@ -46,10 +46,10 @@ function App() {
   function handleLogin(userData) {
     auth.authorize(userData)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('token', res.token);
+        if (res.email) {
+          localStorage.setItem('idUser', res.email);
           setIsLogged(true);
-          setIsEmailUser(userData.email);
+          setIsEmailUser(res.email);
           navigate('/');
         }
       })
@@ -74,24 +74,25 @@ function App() {
   }
 
 
-  // Проверка наличия сохраненных данных пользователя и автоматическая авторизация
+  // Проверка localStorage на наличие почты пользователя и автоматическая авторизация
   React.useEffect(() => {
-    const userToken = localStorage.getItem('token');
-    if (userToken) {
-      auth.checkToken(userToken)
+    const idUser = localStorage.getItem('idUser');
+    if (idUser) {
+      auth.checkLocalStorage(idUser)
         .then((res) => {
+          console.log(res); // del
           if (res) {
             setIsLogged(true);
-            setIsEmailUser(res.data.email);
+            setIsEmailUser(res.email);
           }
         })
-        .catch(err => console.log(`Токен не найден: ${err}`))
+        .catch(err => console.log(`Идентификатор пользователя не найден: ${err}`))
     }
   }, [])
 
   // Выход из учетной записи
   function onSignOut() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('idUser');
     setIsLogged(false);
   }
 
@@ -100,12 +101,14 @@ function App() {
   React.useEffect(() => {
     api.getAppInfo()
       .then(([getUserInfo, getInitialCards]) => {
+        console.log(getUserInfo); // del
+        console.log(getInitialCards); // del
         setCurrentUser(getUserInfo);
         setCards(getInitialCards);
       })
-      .catch(err => console.log(`При загрузке данных с сервера произошла ошибка: ${err}`));
+      .catch(err => console.log(`При загрузке данных с сервера произошла ошибка: ${err}`)
+      );
   }, [])
-
 
   // Открытие попапов
   const handleEditAvatarClick = () => {

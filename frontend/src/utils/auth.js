@@ -34,16 +34,16 @@ class Auth {
   }
 
   // Проверка корректности токена, получение email пользователя
-  checkToken(token) {
+  checkLocalStorage(email) {
     return fetch(`${this._serverAuthUrl}/users/me`, {
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${email}`
       }
     })
       .then(res => this._handleResult(res))
   }
-
 
   // Обработчик результата запроса
   _handleResult(res) {

@@ -13,6 +13,7 @@ class Api {
   // Получение данных пользователя
   _getUserInfo() {
     return fetch(`${this._serverUrl}/users/me`, {
+      credentials: 'include',
       headers: this._receiveRequestHeaders
     })
       .then(res => this._handleResult(res));
@@ -21,6 +22,7 @@ class Api {
   // Получение начальных карточек
   _getInitialCards() {
     return fetch(`${this._serverUrl}/cards`, {
+      credentials: 'include',
       headers: this._receiveRequestHeaders
     })
       .then(res => this._handleResult(res));
