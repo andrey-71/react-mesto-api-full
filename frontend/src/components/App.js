@@ -41,21 +41,6 @@ function App() {
   // - почты пользователя
   const [isEmailUser, setIsEmailUser] = React.useState('');
 
-
-  // Авторизация пользователя
-  function handleLogin(userData) {
-    auth.authorize(userData)
-      .then((res) => {
-        if (res.email) {
-          localStorage.setItem('idUser', res.email);
-          setIsLogged(true);
-          setIsEmailUser(res.email);
-          navigate('/');
-        }
-      })
-      .catch(err => console.log(`При авторизации произошла ошибка: ${err}`));
-  }
-
   // Регистрация пользователя
   function handleRegister(userData) {
     auth.register(userData)
@@ -64,6 +49,7 @@ function App() {
         setIsInfoTooltipPopupOpen(true);
         setTimeout(() => {
           navigate('/sign-in');
+          setIsInfoTooltipPopupOpen(false);
         }, 2000)
       })
       .catch((err) => {
@@ -73,22 +59,20 @@ function App() {
       })
   }
 
-
-  // Проверка localStorage на наличие почты пользователя и автоматическая авторизация
-  React.useEffect(() => {
-    const idUser = localStorage.getItem('idUser');
-    if (idUser) {
-      auth.checkLocalStorage(idUser)
-        .then((res) => {
-          console.log(res); // del
-          if (res) {
-            setIsLogged(true);
-            setIsEmailUser(res.email);
-          }
-        })
-        .catch(err => console.log(`Идентификатор пользователя не найден: ${err}`))
-    }
-  }, [])
+  // Авторизация пользователя
+  function handleLogin(userData) {
+    auth.authorize(userData)
+      .then((res) => {
+        if (res.email) {
+          localStorage.setItem('idUser', res.email);
+          setIsLogged(true);
+          getData();
+          setIsEmailUser(res.email);
+          navigate('/');
+        }
+      })
+      .catch(err => console.log(`При авторизации произошла ошибка: ${err}`));
+  }
 
   // Выход из учетной записи
   function onSignOut() {
@@ -97,18 +81,17 @@ function App() {
   }
 
 
-  // Получение карточек и данных пользователя, отрисовка на странице
-  React.useEffect(() => {
+  // Получение карточек и данных пользователя с отрисовкой на странице
+  function getData() {
     api.getAppInfo()
       .then(([getUserInfo, getInitialCards]) => {
-        console.log(getUserInfo); // del
-        console.log(getInitialCards); // del
         setCurrentUser(getUserInfo);
         setCards(getInitialCards);
       })
       .catch(err => console.log(`При загрузке данных с сервера произошла ошибка: ${err}`)
       );
-  }, [])
+  }
+
 
   // Открытие попапов
   const handleEditAvatarClick = () => {
@@ -136,27 +119,13 @@ function App() {
     setIsInfoTooltipPopupOpen(false);
     setSelectedCard(null);
   }
-  // Закрытие попапа при нажатии Esc
-  React.useEffect(() => {
-    if (isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isDeleteCardPopupOpen || isInfoTooltipPopupOpen || selectedCard) {
-      const handleEscClick = (evt) => {
-        if (evt.key === 'Escape') {
-          closeAllPopups();
-        }
-      }
-      document.addEventListener('keyup', handleEscClick);
 
-      return () => {
-        document.removeEventListener('keyup', handleEscClick);
-      }
-    }
-  }, [isEditAvatarPopupOpen, isEditProfilePopupOpen, isAddPlacePopupOpen, isDeleteCardPopupOpen, isInfoTooltipPopupOpen, selectedCard]);
   // Закрытие попапа при клике на overlay
   const handleOverlayClick = (evt) => {
     if (evt.target.classList.contains('popup')) {
       closeAllPopups();
     }
-  }
+  };
 
 
   // Отправка на сервер
@@ -210,8 +179,7 @@ function App() {
       .finally(() => setIsLoading(false))
   }
 
-
-  // Лайк на карточке
+  // - лайка на карточке
   function handleCardLike(card) {
     const isLiked = card.likes.some(c => c._id === currentUser._id);
 
@@ -221,6 +189,40 @@ function App() {
       })
       .catch(err => console.log(`При постановке/снятии лайк произошла ошибка: ${err}`));
   }
+
+
+  // Автоматическая авторизация при наличии идентификатора пользователя в localStorage
+  React.useEffect(() => {
+    const idUser = localStorage.getItem('idUser');
+    if (idUser) {
+      auth.checkLocalStorage(idUser)
+        .then((res) => {
+          if (res) {
+            setIsLogged(true);
+            getData();
+            setIsEmailUser(res.email);
+          }
+        })
+        .catch(err => console.log(`Идентификатор пользователя не найден: ${err}`))
+    }
+  }, []);
+
+  // Закрытие попапа при нажатии Esc
+  React.useEffect(() => {
+    const handleEscClick = (evt) => {
+      if (evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    };
+
+    if (isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isDeleteCardPopupOpen || isInfoTooltipPopupOpen || selectedCard) {
+      document.addEventListener('keyup', handleEscClick);
+
+      return () => {
+        document.removeEventListener('keyup', handleEscClick);
+      };
+    }
+  }, [isEditAvatarPopupOpen, isEditProfilePopupOpen, isAddPlacePopupOpen, isDeleteCardPopupOpen, isInfoTooltipPopupOpen, selectedCard]);
 
 
   return (
