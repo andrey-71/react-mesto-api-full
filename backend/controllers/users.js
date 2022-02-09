@@ -54,6 +54,12 @@ module.exports.login = (req, res, next) => {
     .catch(next);
 };
 
+// Разлогинивание пользователя
+module.exports.logout = (req, res, next) => {
+  res.cookie('jwt', '').end()
+    .catch(next);
+};
+
 // Получение всех пользователей
 module.exports.getUsers = (req, res, next) => User.find({})
   .then((users) => {
