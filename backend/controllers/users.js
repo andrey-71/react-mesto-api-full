@@ -48,7 +48,7 @@ module.exports.login = (req, res, next) => {
         httpOnly: true,
         sameSite: true,
       })
-        .send({ data: user.toJSON() });
+        .send(user.toJSON());
     })
 
     .catch(next);
