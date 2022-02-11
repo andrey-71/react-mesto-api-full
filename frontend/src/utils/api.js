@@ -108,7 +108,7 @@ class Api {
 }
 
 const api = new Api({
-  serverUrl: 'mesto-backend.andrey-g.nomoredomains.xyz',
+  serverUrl: 'https://mesto-backend.andrey-g.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json'
   }
