@@ -15,7 +15,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 // Подключение к БД
-mongoose.connect(`${DB_ADDRESS}`, {
+mongoose.connect(DB_ADDRESS, {
   useNewUrlParser: true,
 });
 

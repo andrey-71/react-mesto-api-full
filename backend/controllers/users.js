@@ -1,10 +1,10 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
-const { JWT_SECRET } = require('../utils/config');
 
 // Регистрация пользователя
 module.exports.createUser = (req, res, next) => {
@@ -38,7 +38,7 @@ module.exports.login = (req, res, next) => {
       // Создание токена
       const token = jwt.sign(
         { _id: user._id },
-        `${JWT_SECRET}`,
+        NODE_ENV === 'production' ? `${JWT_SECRET}` : 'dev-secret',
         { expiresIn: '7d' },
       );
 
