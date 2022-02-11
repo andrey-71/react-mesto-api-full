@@ -55,5 +55,5 @@ class Auth {
   }
 }
 
-const auth = new Auth('http://localhost:3001');
+const auth = new Auth('mesto-backend.andrey-g.nomoredomains.xyz');
 export default auth;
