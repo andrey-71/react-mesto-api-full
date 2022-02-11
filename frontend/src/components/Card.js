@@ -13,7 +13,7 @@ function Card(props) {
   // Отрисовка лайка на карточке, поставленного пользователем
   const isLiked = props.card.likes.some(like => like === currentUser._id);
   const cardLikeButtonClassName = `card__like${isLiked ? ' card__like_active' : ''}`;
-  console.log(props.card);
+
   return (
     <figure className='card'>
       <img
