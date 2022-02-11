@@ -22,8 +22,9 @@ mongoose.connect(DB_ADDRESS, {
 // CORS
 const corsOptions = {
   origin: [
+    'https://mesto-frontend.andrey-g.nomoredomains.xyz',
+    'http://mesto-frontend.andrey-g.nomoredomains.xyz',
     'http://localhost:3000',
-    'mesto-frontend.andrey-g.nomoredomains.xyz',
   ],
   credentials: true,
 };
