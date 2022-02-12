@@ -24,7 +24,7 @@ const corsOptions = {
   origin: [
     'https://mesto-frontend.andrey-g.nomoredomains.xyz',
     'http://mesto-frontend.andrey-g.nomoredomains.xyz',
-    'http://localhost:3000',
+    'http://localhost:3001',
   ],
   credentials: true,
 };
