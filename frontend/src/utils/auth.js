@@ -55,5 +55,5 @@ class Auth {
   }
 }
 
-const auth = new Auth('http://mesto-backend.andrey-g.nomoredomains.xyz');
+const auth = new Auth('https://mesto-backend.andrey-g.nomoredomains.xyz');
 export default auth;
