@@ -8,12 +8,12 @@ ___
 
 
 ## Зайти на сайт можно по ссылке:
-* https://mesto-frontend.andrey-g.nomoredomains.xyz*
+* https://mesto-frontend.andrey-g.nomoredomains.xyz
 * http://mesto-frontend.andrey-g.nomoredomains.xyz
 
 ### Адрес сервера:
-* Адрес сервера: https://m.esto-backend.andrey-g.nomoredomains.xyz
-* IP-адрес сервера: 84.252.128.213:3000
+* Адрес сервера: https://mesto-backend.andrey-g.nomoredomains.xyz
+* IP-адрес сервера: 194.87.93.117
 ___
 
 
